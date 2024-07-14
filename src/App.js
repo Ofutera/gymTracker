@@ -1,11 +1,17 @@
+import React from 'react';
 import './App.css';
+import Home from '../src/pages/Home/Home'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 function App() {
   return (
-    <div className="App">
-     GymTracker 2024
-    </div>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+     <Home />
+     </LocalizationProvider>
   );
 }
 
 export default App;
+
+
