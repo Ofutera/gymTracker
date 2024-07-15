@@ -1,12 +1,16 @@
 import * as React from 'react';
 import Header from '../../../src/components/Header/Header'
-import AddWorkoutForm from '../../components/Forms/AddWorkout/AddWorkout'
+import AddWorkout from '../../../src/components/Forms/AddWorkout'
+// import WorkoutDetails from '../../components/Forms/WorkoutDetails'
+// import WorkoutExercises from '../../components/Forms/WorkoutExercises'
 
 export default function Home() {
   return (
     <>
     <Header />
-    <AddWorkoutForm />
+    <AddWorkout />
+    {/* <WorkoutDetails />
+    <WorkoutExercises /> */}
     </>
   );
 }

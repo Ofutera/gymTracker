@@ -5,11 +5,13 @@ import Step from '@mui/material/Step';
 import StepButton from '@mui/material/StepButton';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import WorkoutDetails from '../Forms/WorkoutDetails';
+import WorkoutExercises from '../Forms/WorkoutExercises';
 
 
 const steps = [
-  'New workout',
   'Workout details',
+  'Workout exercises',
   'Summary'
 ];
 
@@ -88,7 +90,8 @@ export default function HorizontalNonLinearStepper() {
         ) : (
           <React.Fragment>
             <Typography sx={{ mt: 2, mb: 1, py: 1 }}>
-              Step {activeStep + 1}
+             {activeStep === 0 && <WorkoutDetails />}
+             {activeStep === 1 && <WorkoutExercises />}
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
               <Button

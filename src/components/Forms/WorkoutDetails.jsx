@@ -5,7 +5,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import FormControl from '@mui/material/FormControl';
 
 
-const AddWorkout = () => {
+const WorkoutDetails = () => {
   
   const { handleSubmit, control, formState: { errors } } = useForm();
 
@@ -22,7 +22,7 @@ const AddWorkout = () => {
         sx={{ mt: 3 }}
       >
         <Typography variant="h4" component="h1" gutterBottom>
-          New Workout
+          Step 1 - Workout details
         </Typography>
         <Controller
           name="workoutName"
@@ -61,7 +61,7 @@ const AddWorkout = () => {
             />
           )}
         />
-        <Button
+        {/* <Button
           type="submit"
           fullWidth
           variant="contained"
@@ -69,25 +69,9 @@ const AddWorkout = () => {
           sx={{ mt: 2 }}
         >
           Next
-        </Button>
+        </Button> */}
       </Box>
   );
 };
 
-export default AddWorkout;
-
-// move to step 2
-{/* <FormControl fullWidth>
-<InputLabel id="demo-simple-select-label">Exercise</InputLabel>
-<Select
-  labelId="demo-simple-select-label"
-  id="demo-simple-select"
-  // value={age}
-  label="Exercise"
-  // onChange={handleChange}
->
-  <MenuItem value={10}>Ten</MenuItem>
-  <MenuItem value={20}>Twenty</MenuItem>
-  <MenuItem value={30}>Thirty</MenuItem>
-</Select>
-</FormControl> */}
+export default WorkoutDetails;
