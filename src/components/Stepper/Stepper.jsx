@@ -88,10 +88,11 @@ export default function HorizontalNonLinearStepper() {
             </Box>
           </React.Fragment>
         ) : (
-          <React.Fragment>
+          <Box>
             <Typography sx={{ mt: 2, mb: 1, py: 1 }}>
              {activeStep === 0 && <WorkoutDetails />}
              {activeStep === 1 && <WorkoutExercises />}
+             {activeStep === 2 && <Typography variant="h4" component="h1" gutterBottom mt={3}>Step 3 - Summary</Typography>}
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
               <Button
@@ -119,7 +120,7 @@ export default function HorizontalNonLinearStepper() {
                   </Button>
                 ))}
             </Box>
-          </React.Fragment>
+          </Box>
         )}
       </div>
     </Box>
