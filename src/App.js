@@ -8,7 +8,7 @@ function App() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
      <Home />
-     </LocalizationProvider>
+    </LocalizationProvider>
   );
 }
 
