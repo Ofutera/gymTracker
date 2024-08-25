@@ -1,5 +1,14 @@
 import React from "react";
-import { Box, InputAdornment, TextField, Typography } from "@mui/material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  InputAdornment,
+  TextField,
+  Typography,
+} from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useForm } from "react-hook-form";
 
 // TODO:
@@ -32,215 +41,233 @@ const WorkoutStats = ({ selectedExercises, exercisesData }) => {
           selectedExercises.map((exerciseKey) => {
             const exercise = exercisesData.find((ex) => ex.key === exerciseKey);
             return (
-              <Box key={exerciseKey}>
-                {exercise && (
-                  <>
-                    <Typography sx={{ fontWeight: "bold" }}>
-                      {exercise.label}
-                    </Typography>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          flexBasis: "50%",
-                        }}
-                      >
-                        round 1:
-                      </Typography>
-                      <Box
-                        sx={{
-                          width: "fit-content",
-                          display: "flex",
-                          justifyContent: "flex-end",
-                          flexBasis: "50%",
-                        }}
-                      >
-                        <TextField
-                          size="small"
-                          label="reps"
-                          id="outlined-start-adornment"
-                          sx={{ m: 1 }}
-                          InputLabelProps={{
-                            sx: {
-                              fontSize: "0.9rem", // Adjust the font size here
-                            },
-                          }}
-                        />
-                        <TextField
-                          size="small"
-                          id="outlined-start-adornment"
-                          sx={{ m: 1 }}
-                          InputLabelProps={{
-                            sx: {
-                              fontSize: "0.9rem", // Adjust the font size here
-                            },
-                          }}
-                          InputProps={{
-                            endAdornment: (
-                              <InputAdornment position="end">kg</InputAdornment>
-                            ),
-                          }}
-                        />
-                      </Box>
+              <>
+                <Accordion>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1-content"
+                    id="panel1-header"
+                  >
+                    {exercise.label}
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Box key={exerciseKey}>
+                      {exercise && (
+                        <>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              alignItems: "center",
+                            }}
+                          >
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                flexBasis: "50%",
+                              }}
+                            >
+                              round 1:
+                            </Typography>
+                            <Box
+                              sx={{
+                                width: "fit-content",
+                                display: "flex",
+                                justifyContent: "flex-end",
+                                flexBasis: "50%",
+                              }}
+                            >
+                              <TextField
+                                size="small"
+                                label="reps"
+                                id="outlined-start-adornment"
+                                sx={{ m: 1 }}
+                                InputLabelProps={{
+                                  sx: {
+                                    fontSize: "0.9rem", // Adjust the font size here
+                                  },
+                                }}
+                              />
+                              <TextField
+                                size="small"
+                                id="outlined-start-adornment"
+                                sx={{ m: 1 }}
+                                InputLabelProps={{
+                                  sx: {
+                                    fontSize: "0.9rem", // Adjust the font size here
+                                  },
+                                }}
+                                InputProps={{
+                                  endAdornment: (
+                                    <InputAdornment position="end">
+                                      kg
+                                    </InputAdornment>
+                                  ),
+                                }}
+                              />
+                            </Box>
+                          </Box>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              alignItems: "center",
+                            }}
+                          >
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                flexBasis: "50%",
+                              }}
+                            >
+                              round 2:
+                            </Typography>
+                            <Box
+                              sx={{
+                                width: "fit-content",
+                                display: "flex",
+                                justifyContent: "flex-end",
+                                flexBasis: "50%",
+                              }}
+                            >
+                              <TextField
+                                size="small"
+                                label="reps"
+                                id="outlined-start-adornment"
+                                sx={{ m: 1 }}
+                                InputLabelProps={{
+                                  sx: {
+                                    fontSize: "0.9rem", // Adjust the font size here
+                                  },
+                                }}
+                              />
+                              <TextField
+                                size="small"
+                                id="outlined-start-adornment"
+                                sx={{ m: 1 }}
+                                InputLabelProps={{
+                                  sx: {
+                                    fontSize: "0.9rem", // Adjust the font size here
+                                  },
+                                }}
+                                InputProps={{
+                                  endAdornment: (
+                                    <InputAdornment position="end">
+                                      kg
+                                    </InputAdornment>
+                                  ),
+                                }}
+                              />
+                            </Box>
+                          </Box>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              alignItems: "center",
+                            }}
+                          >
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                flexBasis: "50%",
+                              }}
+                            >
+                              round 3:
+                            </Typography>
+                            <Box
+                              sx={{
+                                width: "fit-content",
+                                display: "flex",
+                                justifyContent: "flex-end",
+                                flexBasis: "50%",
+                              }}
+                            >
+                              <TextField
+                                size="small"
+                                label="reps"
+                                id="outlined-start-adornment"
+                                sx={{ m: 1 }}
+                                InputLabelProps={{
+                                  sx: {
+                                    fontSize: "0.9rem", // Adjust the font size here
+                                  },
+                                }}
+                              />
+                              <TextField
+                                size="small"
+                                id="outlined-start-adornment"
+                                sx={{ m: 1 }}
+                                InputLabelProps={{
+                                  sx: {
+                                    fontSize: "0.9rem", // Adjust the font size here
+                                  },
+                                }}
+                                InputProps={{
+                                  endAdornment: (
+                                    <InputAdornment position="end">
+                                      kg
+                                    </InputAdornment>
+                                  ),
+                                }}
+                              />
+                            </Box>
+                          </Box>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              alignItems: "center",
+                            }}
+                          >
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                flexBasis: "50%",
+                              }}
+                            >
+                              round 4:
+                            </Typography>
+                            <Box
+                              sx={{
+                                width: "fit-content",
+                                display: "flex",
+                                justifyContent: "flex-end",
+                                flexBasis: "50%",
+                              }}
+                            >
+                              <TextField
+                                size="small"
+                                label="reps"
+                                id="outlined-start-adornment"
+                                sx={{ m: 1 }}
+                                InputLabelProps={{
+                                  sx: {
+                                    fontSize: "0.9rem", // Adjust the font size here
+                                  },
+                                }}
+                              />
+                              <TextField
+                                size="small"
+                                id="outlined-start-adornment"
+                                sx={{ m: 1 }}
+                                InputLabelProps={{
+                                  sx: {
+                                    fontSize: "0.9rem", // Adjust the font size here
+                                  },
+                                }}
+                                InputProps={{
+                                  endAdornment: (
+                                    <InputAdornment position="end">
+                                      kg
+                                    </InputAdornment>
+                                  ),
+                                }}
+                              />
+                            </Box>
+                          </Box>
+                        </>
+                      )}
                     </Box>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          flexBasis: "50%",
-                        }}
-                      >
-                        round 2:
-                      </Typography>
-                      <Box
-                        sx={{
-                          width: "fit-content",
-                          display: "flex",
-                          justifyContent: "flex-end",
-                          flexBasis: "50%",
-                        }}
-                      >
-                        <TextField
-                          size="small"
-                          label="reps"
-                          id="outlined-start-adornment"
-                          sx={{ m: 1 }}
-                          InputLabelProps={{
-                            sx: {
-                              fontSize: "0.9rem", // Adjust the font size here
-                            },
-                          }}
-                        />
-                        <TextField
-                          size="small"
-                          id="outlined-start-adornment"
-                          sx={{ m: 1 }}
-                          InputLabelProps={{
-                            sx: {
-                              fontSize: "0.9rem", // Adjust the font size here
-                            },
-                          }}
-                          InputProps={{
-                            endAdornment: (
-                              <InputAdornment position="end">kg</InputAdornment>
-                            ),
-                          }}
-                        />
-                      </Box>
-                    </Box>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          flexBasis: "50%",
-                        }}
-                      >
-                        round 3:
-                      </Typography>
-                      <Box
-                        sx={{
-                          width: "fit-content",
-                          display: "flex",
-                          justifyContent: "flex-end",
-                          flexBasis: "50%",
-                        }}
-                      >
-                        <TextField
-                          size="small"
-                          label="reps"
-                          id="outlined-start-adornment"
-                          sx={{ m: 1 }}
-                          InputLabelProps={{
-                            sx: {
-                              fontSize: "0.9rem", // Adjust the font size here
-                            },
-                          }}
-                        />
-                        <TextField
-                          size="small"
-                          id="outlined-start-adornment"
-                          sx={{ m: 1 }}
-                          InputLabelProps={{
-                            sx: {
-                              fontSize: "0.9rem", // Adjust the font size here
-                            },
-                          }}
-                          InputProps={{
-                            endAdornment: (
-                              <InputAdornment position="end">kg</InputAdornment>
-                            ),
-                          }}
-                        />
-                      </Box>
-                    </Box>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          flexBasis: "50%",
-                        }}
-                      >
-                        round 4:
-                      </Typography>
-                      <Box
-                        sx={{
-                          width: "fit-content",
-                          display: "flex",
-                          justifyContent: "flex-end",
-                          flexBasis: "50%",
-                        }}
-                      >
-                        <TextField
-                          size="small"
-                          label="reps"
-                          id="outlined-start-adornment"
-                          sx={{ m: 1 }}
-                          InputLabelProps={{
-                            sx: {
-                              fontSize: "0.9rem", // Adjust the font size here
-                            },
-                          }}
-                        />
-                        <TextField
-                          size="small"
-                          id="outlined-start-adornment"
-                          sx={{ m: 1 }}
-                          InputLabelProps={{
-                            sx: {
-                              fontSize: "0.9rem", // Adjust the font size here
-                            },
-                          }}
-                          InputProps={{
-                            endAdornment: (
-                              <InputAdornment position="end">kg</InputAdornment>
-                            ),
-                          }}
-                        />
-                      </Box>
-                    </Box>
-                  </>
-                )}
-              </Box>
+                  </AccordionDetails>
+                </Accordion>
+              </>
             );
           })
         ) : (
