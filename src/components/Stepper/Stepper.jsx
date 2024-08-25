@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -7,15 +7,34 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import WorkoutDetails from "../Forms/WorkoutDetails";
 import WorkoutExercises from "../Forms/WorkoutExercises";
+import WorkoutStats from "../Forms/WorkoutStats";
 
-const steps = ["Workout details", "Workout exercises", "Summary"];
+const STEPS = ["Workout details", "Workout exercises", "Summary"];
+const EXERCISES_DATA = [
+  { key: 0, label: "Leg extensions" },
+  { key: 1, label: "Leg press" },
+  { key: 2, label: "Rows" },
+  { key: 3, label: "Pushups" },
+  { key: 4, label: "Staggered squats" },
+  { key: 5, label: "Dips" },
+  { key: 6, label: "Staggered deadlifts" },
+  { key: 7, label: "Pulldown front" },
+  { key: 8, label: "Pulldown back" },
+  { key: 9, label: "Bench press" },
+  { key: 10, label: "Diamond pushups" },
+  { key: 11, label: "Shoulder pushup bar" },
+  { key: 12, label: "Cable cross" },
+  { key: 13, label: "Biceps curls" },
+  { key: 14, label: "Pullups" },
+];
 
 export default function HorizontalNonLinearStepper() {
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [completed, setCompleted] = React.useState({});
+  const [activeStep, setActiveStep] = useState(0);
+  const [completed, setCompleted] = useState({});
+  const [selectedExercises, setSelectedExercises] = useState([]);
 
   const totalSteps = () => {
-    return steps.length;
+    return STEPS.length;
   };
 
   const completedSteps = () => {
@@ -35,7 +54,7 @@ export default function HorizontalNonLinearStepper() {
       isLastStep() && !allStepsCompleted()
         ? // It's the last step, but not all steps have been completed,
           // find the first step that has been completed
-          steps.findIndex((step, i) => !(i in completed))
+          STEPS.findIndex((step, i) => !(i in completed))
         : activeStep + 1;
     setActiveStep(newActiveStep);
   };
@@ -63,7 +82,7 @@ export default function HorizontalNonLinearStepper() {
   return (
     <Box sx={{ width: "100%" }}>
       <Stepper nonLinear activeStep={activeStep}>
-        {steps.map((label, index) => (
+        {STEPS.map((label, index) => (
           <Step key={label} completed={completed[index]}>
             <StepButton color="inherit" onClick={handleStep(index)}>
               {label}
@@ -86,11 +105,18 @@ export default function HorizontalNonLinearStepper() {
           <Box>
             <Typography sx={{ mt: 2, mb: 1, py: 1 }}>
               {activeStep === 0 && <WorkoutDetails />}
-              {activeStep === 1 && <WorkoutExercises />}
+              {activeStep === 1 && (
+                <WorkoutExercises
+                  selectedExercises={selectedExercises}
+                  setSelectedExercises={setSelectedExercises}
+                  exercisesData={EXERCISES_DATA}
+                />
+              )}
               {activeStep === 2 && (
-                <Typography variant="h4" component="h1" gutterBottom mt={3}>
-                  Step 3 - Summary
-                </Typography>
+                <WorkoutStats
+                  selectedExercises={selectedExercises}
+                  exercisesData={EXERCISES_DATA}
+                />
               )}
             </Typography>
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
@@ -106,7 +132,7 @@ export default function HorizontalNonLinearStepper() {
               <Button onClick={handleNext} sx={{ mr: 1 }}>
                 Next
               </Button>
-              {activeStep !== steps.length &&
+              {activeStep !== STEPS.length &&
                 (completed[activeStep] ? (
                   <Typography
                     variant="caption"
