@@ -1,35 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Chip from "@mui/material/Chip";
 import AddIcon from "@mui/icons-material/Add";
 
-const WorkoutExercises = () => {
+const WorkoutExercises = ({
+  selectedExercises,
+  setSelectedExercises,
+  exercisesData,
+}) => {
   const {
     handleSubmit,
     control,
     formState: { errors },
   } = useForm();
-  const [chipData, setChipData] = useState([
-    { key: 0, label: "Leg extensions" },
-    { key: 1, label: "Leg press" },
-    { key: 2, label: "Rows" },
-    { key: 3, label: "Pushups" },
-    { key: 4, label: "Staggered squats" },
-    { key: 5, label: "Dips" },
-    { key: 6, label: "Staggered deadlifts" },
-    { key: 7, label: "Pulldown front" },
-    { key: 8, label: "Pulldown back" },
-    { key: 9, label: "Bench press" },
-    { key: 10, label: "Diamond pushups" },
-    { key: 11, label: "Shoulder pushup bar" },
-    { key: 12, label: "Cable cross" },
-    { key: 13, label: "Biceps curls" },
-    { key: 14, label: "Pullups" },
-  ]);
-
-  const [selectedChips, setSelectedChips] = useState([]);
 
   const ListItem = styled("li")(({ theme }) => ({
     margin: theme.spacing(0.5),
@@ -39,11 +24,11 @@ const WorkoutExercises = () => {
     console.log(data);
   };
 
-  const handleClickOnChips = (key) => {
-    setSelectedChips((prevSelectedChips) =>
-      prevSelectedChips.includes(key)
-        ? prevSelectedChips.filter((selectedKey) => selectedKey !== key)
-        : [...prevSelectedChips, key]
+  const handleSelectExercise = (key) => {
+    setSelectedExercises((prevSelectedExercises) =>
+      prevSelectedExercises.includes(key)
+        ? prevSelectedExercises.filter((selectedKey) => selectedKey !== key)
+        : [...prevSelectedExercises, key]
     );
   };
 
@@ -68,14 +53,15 @@ const WorkoutExercises = () => {
         }}
         component="ul"
       >
-        {chipData.map((data) => {
-          const isSelected = selectedChips.includes(data.key);
+        {exercisesData.map((data) => {
+          const isSelected = selectedExercises.includes(data.key);
+
           return (
             <ListItem key={data.key}>
               <Chip
                 icon={<AddIcon fontSize="small" />}
                 label={data.label}
-                onClick={() => handleClickOnChips(data.key)}
+                onClick={() => handleSelectExercise(data.key)}
                 color={isSelected ? "primary" : "default"}
                 variant={isSelected ? "filled" : "outlined"}
               />
