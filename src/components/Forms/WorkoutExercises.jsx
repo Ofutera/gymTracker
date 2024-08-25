@@ -29,12 +29,22 @@ const WorkoutExercises = () => {
     { key: 14, label: "Pullups" },
   ]);
 
+  const [selectedChips, setSelectedChips] = useState([]);
+
   const ListItem = styled("li")(({ theme }) => ({
     margin: theme.spacing(0.5),
   }));
 
   const onSubmit = (data) => {
     console.log(data);
+  };
+
+  const handleClickOnChips = (key) => {
+    setSelectedChips((prevSelectedChips) =>
+      prevSelectedChips.includes(key)
+        ? prevSelectedChips.filter((selectedKey) => selectedKey !== key)
+        : [...prevSelectedChips, key]
+    );
   };
 
   return (
@@ -59,11 +69,16 @@ const WorkoutExercises = () => {
         component="ul"
       >
         {chipData.map((data) => {
-          let icon;
-
+          const isSelected = selectedChips.includes(data.key);
           return (
             <ListItem key={data.key}>
-              <Chip icon={<AddIcon fontSize="small" />} label={data.label} />
+              <Chip
+                icon={<AddIcon fontSize="small" />}
+                label={data.label}
+                onClick={() => handleClickOnChips(data.key)}
+                color={isSelected ? "primary" : "default"}
+                variant={isSelected ? "filled" : "outlined"}
+              />
             </ListItem>
           );
         })}
