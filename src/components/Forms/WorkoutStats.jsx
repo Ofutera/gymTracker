@@ -11,10 +11,6 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useForm } from "react-hook-form";
 
-// TODO:
-// - make section for each exercise collapsible,
-// - handle user input data
-
 const WorkoutStats = ({ selectedExercises, exercisesData }) => {
   const {
     handleSubmit,
@@ -34,7 +30,7 @@ const WorkoutStats = ({ selectedExercises, exercisesData }) => {
       sx={{ mt: 3 }}
     >
       <Typography variant="h4" component="h1" gutterBottom>
-        Add some more stats
+        Add details
       </Typography>
       <Box compotnent="ul">
         {selectedExercises.length > 0 ? (
@@ -272,8 +268,7 @@ const WorkoutStats = ({ selectedExercises, exercisesData }) => {
           })
         ) : (
           <Typography>
-            To add some more stats, select at least one exercise in the previous
-            step.
+            Select at least one exercise in the previous step.
           </Typography>
         )}
       </Box>
