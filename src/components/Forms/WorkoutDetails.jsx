@@ -12,7 +12,7 @@ import {
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import FormControl from "@mui/material/FormControl";
 
-const WorkoutDetails = () => {
+const WorkoutDetails = ({ setLocationAndDate }) => {
   const {
     handleSubmit,
     control,
@@ -21,6 +21,13 @@ const WorkoutDetails = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+  };
+
+  const handleDateAndLocation = (field, value) => {
+    setLocationAndDate((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
   };
 
   return (
@@ -34,18 +41,24 @@ const WorkoutDetails = () => {
         Step 1 - Workout details
       </Typography>
       <Controller
-        name="workoutName"
+        name="workoutLocation"
         control={control}
         defaultValue=""
         render={({ field }) => (
           <TextField
             {...field}
-            label="Workout Name"
+            label="Location"
+            onChange={(e) => {
+              field.onChange(e);
+              handleDateAndLocation("location", e.target.value);
+            }}
             variant="outlined"
             fullWidth
             margin="normal"
-            error={!!errors.workoutName}
-            helperText={errors.workoutName && errors.workoutName.message}
+            error={!!errors.workoutLocation}
+            helperText={
+              errors.workoutLocation && errors.workoutLocation.message
+            }
           />
         )}
       />
@@ -58,6 +71,10 @@ const WorkoutDetails = () => {
           <DatePicker
             {...field}
             label="Workout Date"
+            onChange={(value) => {
+              field.onChange(value);
+              handleDateAndLocation("date", value);
+            }}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -72,15 +89,6 @@ const WorkoutDetails = () => {
           />
         )}
       />
-      {/* <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          color="primary"
-          sx={{ mt: 2 }}
-        >
-          Next
-        </Button> */}
     </Box>
   );
 };

@@ -8,8 +8,9 @@ import Typography from "@mui/material/Typography";
 import WorkoutDetails from "../Forms/WorkoutDetails";
 import WorkoutExercises from "../Forms/WorkoutExercises";
 import WorkoutStats from "../Forms/WorkoutStats";
+import WorkoutSummary from "../Forms/WorkoutSummary";
 
-const STEPS = ["Workout details", "Workout exercises", "Summary"];
+const STEPS = ["Add details", "Select exercises", "Customize", "Summary"];
 const EXERCISES_DATA = [
   { key: 0, label: "Leg extensions" },
   { key: 1, label: "Leg press" },
@@ -32,6 +33,10 @@ export default function HorizontalNonLinearStepper() {
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState({});
   const [selectedExercises, setSelectedExercises] = useState([]);
+  const [locationAndDate, setLocationAndDate] = useState({
+    location: "",
+    date: null,
+  });
 
   const totalSteps = () => {
     return STEPS.length;
@@ -81,7 +86,7 @@ export default function HorizontalNonLinearStepper() {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Stepper nonLinear activeStep={activeStep}>
+      <Stepper nonLinear activeStep={activeStep} sx={{ flexWrap: "wrap" }}>
         {STEPS.map((label, index) => (
           <Step key={label} completed={completed[index]}>
             <StepButton color="inherit" onClick={handleStep(index)}>
@@ -104,7 +109,9 @@ export default function HorizontalNonLinearStepper() {
         ) : (
           <Box>
             <Typography sx={{ mt: 2, mb: 1, py: 1 }}>
-              {activeStep === 0 && <WorkoutDetails />}
+              {activeStep === 0 && (
+                <WorkoutDetails setLocationAndDate={setLocationAndDate} />
+              )}
               {activeStep === 1 && (
                 <WorkoutExercises
                   selectedExercises={selectedExercises}
@@ -114,6 +121,13 @@ export default function HorizontalNonLinearStepper() {
               )}
               {activeStep === 2 && (
                 <WorkoutStats
+                  selectedExercises={selectedExercises}
+                  exercisesData={EXERCISES_DATA}
+                />
+              )}
+              {activeStep === 3 && (
+                <WorkoutSummary
+                  locationAndDate={locationAndDate}
                   selectedExercises={selectedExercises}
                   exercisesData={EXERCISES_DATA}
                 />
